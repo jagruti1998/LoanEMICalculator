@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class LoanService {
@@ -38,5 +39,13 @@ public class LoanService {
         } else {
             throw new RuntimeException("Only admins can create loans");
         }
+    }
+
+    public Loan getLoan( int loanId ) {
+        return loanRepository.findById(loanId).orElse(null);
+    }
+
+    public List<Loan> getAllLoans() {
+        return loanRepository.findAll();
     }
 }

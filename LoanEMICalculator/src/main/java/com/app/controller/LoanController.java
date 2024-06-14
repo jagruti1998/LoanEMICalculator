@@ -6,12 +6,10 @@ import com.app.entity.Loan;
 import com.app.service.LoanService;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -27,5 +25,14 @@ public class LoanController {
         return loanService.createLoan(loanRequest);
     }
 
-    //getAllLoan
+    //getLoan
+    @GetMapping("/{loanId}")
+    public Loan getLoan(@PathVariable int loanId) {
+        return loanService.getLoan(loanId);
+    }
+
+    @GetMapping("/admin/all")
+    public List<Loan> getAllLoans() {
+        return loanService.getAllLoans();
+    }
 }
